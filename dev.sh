@@ -2,9 +2,23 @@
 
  echo "==================BEM VINDO=================="
  echo "Os seguintes programas vão ser instalados:"
- echo "GitHub desktop - Visual Studio Code - SDKMAN - Maven - Java 12 - Gradle - Eclipse - Discord - Google Chrome"
+ echo "GitHub desktop - Visual Studio Code - SDKMAN - Maven - Java 12 - Gradle - Eclipse - Node - nvm"
  echo "Por via das duvidas alguns comandos são colocados por segurança"
  echo "============================================="
+
+
+ echo "=================="
+ echo "Iniciando processo"
+ echo "=================="
+
+ sudo apt-get update -y
+ sudo apt-get upgrade -y
+ 
+ echo "===================================="
+ echo "Instalando os programas esenciais"
+ echo "===================================="
+ sudo apt-get install -y wget dpkg git snapd flatpak curl
+ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 #Programas de desenvolvimento
  echo "======================================================"
@@ -17,7 +31,7 @@
  echo "======================================================"
  echo "Iniciando instalação do GitHub Desktop"
  echo "======================================================"
- sudo flatpak install --user https://flathub.org/repo/appstream/io.github.shiftey.Desktop.flatpakref -y
+ sudo flatpak install io.github.shiftey.Desktop -y
  
 ##Instalação do SDKMAN
  
@@ -53,9 +67,15 @@
  echo "===================================="
  sudo snap install eclipse --classic
 
+##Instalação do node
+ echo "===================================="
+ echo "Iniciando instalação do node"
+ echo "===================================="
+ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+ nvm install v18.12.1  
+
  echo "Obrigado por usar este Script, tenha um bom dia!"
  echo "A amizade desenvolve a felicidade e reduz o sofrimento, duplicando a nossa alegria e dividindo a nossa dor. -Joseph Addison"
-
 
 
 

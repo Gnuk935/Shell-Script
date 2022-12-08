@@ -50,7 +50,7 @@
  echo "======================================================"
  echo "Iniciando instalação do GitHub Desktop"
  echo "======================================================"
- sudo flatpak install --user https://flathub.org/repo/appstream/io.github.shiftey.Desktop.flatpakref -y
+ sudo flatpak install io.github.shiftey.Desktop -y
  
 ##Instalação do SDKMAN
  
