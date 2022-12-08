@@ -86,6 +86,13 @@
  echo "===================================="
  sudo snap install eclipse --classic
 
+##Instalação do node
+ echo "===================================="
+ echo "Iniciando instalação do node"
+ echo "===================================="
+ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+ nvm install v18.12.1  
+
  echo "Obrigado por usar este Script, tenha um bom dia!"
  echo "A amizade desenvolve a felicidade e reduz o sofrimento, duplicando a nossa alegria e dividindo a nossa dor. -Joseph Addison"
 
