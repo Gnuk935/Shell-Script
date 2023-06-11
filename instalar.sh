@@ -12,13 +12,13 @@
  echo "Iniciando processo"
  echo "=================="
 
- sudo apt-get update -y
- sudo apt-get upgrade -y
+ sudo apt update -y
+ sudo apt upgrade -y
  
  echo "===================================="
  echo "Instalando os programas esenciais"
  echo "===================================="
- sudo apt-get install -y wget dpkg git snapd flatpak curl
+ sudo apt install -y wget dpkg git snapd flatpak curl
  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
  
  echo "========================================="
@@ -39,6 +39,14 @@
  echo "===================================="
  sudo snap install discord
 
+ echo "==================================="
+ echo "Iniciando instalação do mousepad"
+ echo "==================================="
+ sudo apt install mousepad -y
+ echo "==================================="
+ echo "OBS-Studio"
+ echo "==================================="
+ sudo apt install obs-studio -y
 #Programas de desenvolvimento
  echo "======================================================"
  echo "Iniciando instalação dos programas de desenvolvimento"
