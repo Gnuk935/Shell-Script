@@ -20,9 +20,6 @@ VERIFICADOS=()
 LISTNAMEZIPS=("test1.zip" "test2.zip" "test3.zip")
 LISTNAMEPASTAS=("test1" "test2" "test3")
 
-##Direciona a saida:
-exec &> >(tee -a $LOGSDIA/$NOMEARQUIVO.log)
-
 verVariaveis(){
 echo "O nome do log é: $LOGSDIA" 
 echo "O nome do arquivo é: $NOMEARQUIVO"
@@ -122,7 +119,9 @@ gerarBackup(){
 	criarPastas
 	if [ $? -eq 0 ]
 	then
-		ziparPastas
+		##Direciona a saida:
+		exec &> >(tee -a $	LOGSDIA/$NOMEARQUIVO.log)
+		ziparPa	stas
 		if [ $? -eq 0 ]
 		then
 			verificaZipsArray
@@ -158,3 +157,4 @@ main(){
 	exit 1
 	fi
 }
+main
