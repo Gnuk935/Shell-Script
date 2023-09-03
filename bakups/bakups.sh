@@ -81,7 +81,9 @@ do
 	echo $PASTANAME
 	echo $HOME/$PASTANAME
 	echo "================================================="
-	zip -vr9 $AZIP/$NOMEARQUIVO/$ZIPNAME $HOME/$PASTANAME >> $LOGSDIA/$ZIPNAME.log 2>&1 | sha256sum >> $DIRHASH/$NOMEARQUIVO/$ZIPNAME\.sha256
+	zip -vr9 $AZIP/$NOMEARQUIVO/$ZIPNAME $HOME/$PASTANAME >> $LOGSDIA/$ZIPNAME.log 2>&1 
+	echo "Gerando Hash"
+	sha256sum $AZIP/$NOMEARQUIVO/$ZIPNAME >> $DIRHASH/$NOMEARQUIVO/$ZIPNAME\.sha256
         echo "Verificando integridade"
 	zip -T $AZIP/$NOMEARQUIVO/$ZIPNAME
 	if [ $? -eq 0 ]
@@ -95,7 +97,9 @@ do
 done
 echo "================================================="
 echo "Zipando pasta principal"
-zip -vr9 $DIRZIPADOS/$NOMEARQUIVO\.zip $AZIP/$NOMEARQUIVO/ $LOGSDIA/$NOMEARQUIVO.zip.log 2>&1 | sha256sum >> $DIRHASH/$NOMEARQUIVO\.sha256
+zip -vr9 $DIRZIPADOS/$NOMEARQUIVO\.zip $AZIP/$NOMEARQUIVO/ $LOGSDIA/$NOMEARQUIVO.zip.log 2>&1 
+echo "Gerando hash"
+sha256sum $DIRZIPADOS/$NOMEARQUIVO\.zip >> $DIRHASH/$NOMEARQUIVO\.sha256
 echo "Verificando integridade da pasta"
 zip -T /backups/zipados/$NOMEARQUIVO\.zip
 }
