@@ -95,7 +95,7 @@ do
 done
 echo "================================================="
 echo "Zipando pasta principal"
-zip -vr9 $DIRZIPADOS/$NOMEARQUIVO\.zip $AZIP/$NOMEARQUIVO/ $LOGSDIA/$NOMEARQUIVO.log 2>&1 | sha256sum >> $DIRHASH/$NOMEARQUIVO\.sha256
+zip -vr9 $DIRZIPADOS/$NOMEARQUIVO\.zip $AZIP/$NOMEARQUIVO/ $LOGSDIA/$NOMEARQUIVO.zip.log 2>&1 | sha256sum >> $DIRHASH/$NOMEARQUIVO\.sha256
 echo "Verificando integridade da pasta"
 zip -T /backups/zipados/$NOMEARQUIVO\.zip
 }
