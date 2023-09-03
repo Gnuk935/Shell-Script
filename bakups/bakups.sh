@@ -20,6 +20,10 @@ VERIFICADOS=()
 LISTNAMEZIPS=("test1.zip" "test2.zip" "test3.zip")
 LISTNAMEPASTAS=("test1" "test2" "test3")
 
+mkdir -v "$LOGSDIA"
+##Direciona a saida:
+exec &> >(tee -a $	LOGSDIA/$NOMEARQUIVO.log)
+
 verVariaveis(){
 echo "O nome do log é: $LOGSDIA" 
 echo "O nome do arquivo é: $NOMEARQUIVO"
@@ -42,7 +46,7 @@ then
 		echo "Pasta criada com sucesso"
 		echo "====================================================="
 		echo "Criando a pasta de logs"
-		mkdir -v "$LOGSDIA"
+		ls $LOGSDIA
 		if [ $? -eq 0 ]
 		then
 			echo "Pasta criada com sucesso"
@@ -119,9 +123,7 @@ gerarBackup(){
 	criarPastas
 	if [ $? -eq 0 ]
 	then
-		##Direciona a saida:
-		exec &> >(tee -a $	LOGSDIA/$NOMEARQUIVO.log)
-		ziparPa	stas
+		ziparPastas
 		if [ $? -eq 0 ]
 		then
 			verificaZipsArray
