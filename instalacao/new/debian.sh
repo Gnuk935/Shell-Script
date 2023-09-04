@@ -5,6 +5,7 @@ TEMP=/tmp/instalacao
 TMPGERAL=$TEMP/geral.txt
 PUSER=$(whoami)
 DOWNLOADS="/home/$USER/Downloads"
+echo $PUSER
 mkdir -p $TEMP 
 padrao(){
 echo $ESPACO
@@ -267,14 +268,6 @@ echo $ESPACO
 main
 }
 
-
-
-
-
-
-
-
-
 recebeValores(){
 if [ $RECEBIDO -eq 1 ]
 then
@@ -288,6 +281,20 @@ elif [ $RECEBIDO -eq 3 ]
 then
 	echo $ESPACO
 	echo "Instalação comum selecionada, iniciando o processo"
+	comum
+	if [ $? -eq 0 ]
+	then
+		echo $ESPACO
+		echo "Tudo foi instalado corretamente"
+		echo "Obrigado por usar este script!"
+		echo "Apressa-te a viver bem e pensa que cada dia é, por si só, uma vida."
+		echo "Sêneca"
+		echo $ESPACO 
+	else
+		echo "Deu erro em algo e não tratei esse erro, se vira! E perdão :("
+		echo "Você pode abir uma issue"
+		echo "Acesse: https://github.com/Gnuk935/Shell-Script/issues"
+	fi
 elif [ $RECEBIDO -eq 4 ]
 then
 	echo $ESPACO
