@@ -12,3 +12,19 @@ Sendo que a organização das pastas segue o proposito de cada script dentro del
 * Windows/ZiparArquivos -> teste para realizar a compactação de arquivos
 ### Backup
 
+### Arrumar
+1 --> erro na primeira condição
+
+
+
+ERR: GC11 --> PASSOU NO PRIMEIRO TESTE MAS O ARQUIVO NÃO FOI ENCONTRADO!
+
+
+ERR: DC11 --> PASSOU NO PRIMEIRO TESTE MAS O ARQUIVO NÃO FOI ENCONTRADO!
+
+geral.txt:
+
+1 - Chrome
+2 - Obs
+3 - Mousepad
+4 - Discord

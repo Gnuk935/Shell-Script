@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 # Ola, me chamo Barros, este script serve para fazer backups de pasta espesificas do sistema
 # Ele foi o meu priemeiro shell script e sempre que aprendo coisas novas eu busco melhorar ele, fique a vontade para me dar um feedback sobre ele
-# meu email é: victorbmcarvalho@proton.me
+# meu email é: gnuk935@proton.me
 # Ultima atulização: 03/09/2023
 
 echo "Iniciando processo de backups"
@@ -97,11 +97,19 @@ do
 done
 echo "================================================="
 echo "Zipando pasta principal"
-zip -vr9 $DIRZIPADOS/$NOMEARQUIVO\.zip $AZIP/$NOMEARQUIVO/ $LOGSDIA/$NOMEARQUIVO.zip.log 2>&1 
+zip -vr9 $DIRZIPADOS/$NOMEARQUIVO\.zip >> $AZIP/$NOMEARQUIVO/$LOGSDIA/$NOMEARQUIVO.final.log 2>&1 
 echo "Gerando hash"
 sha256sum $DIRZIPADOS/$NOMEARQUIVO\.zip >> $DIRHASH/$NOMEARQUIVO\.sha256
 echo "Verificando integridade da pasta"
 zip -T /backups/zipados/$NOMEARQUIVO\.zip
+if [ $? -eq 0 ]
+then
+	echo "Integridade do $NOMEARQUIVO verificiada com sucesso"
+	VERIFICADOS+=(0)
+else
+	echo "Erro ao zipar o $NOMEARQUIVO"
+	VERIFICADOS+=(1)
+fi
 }
 
 verificaZipsArray(){
