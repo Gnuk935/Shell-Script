@@ -4,7 +4,8 @@ ESPACO="========================================================================
 TEMP=/tmp/instalacao
 TMPGERAL=$TEMP/geral.txt
 PUSER=$(whoami)
-DOWNLOADS="/home/$USER/Downloads"
+DOWNLOADS="/home/$PUSER/Downloads"
+BASHRC=/home/$PUSER/.bashrc
 echo $PUSER
 mkdir -p $TEMP 
 padrao(){
@@ -60,7 +61,7 @@ echo $ESPACO
 	touch $TMPCHROME
 	echo "Iniciando a instalação do Google Chrome"
 	echo $ESPACO
-	LINK_CHROME="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+	LINK_CHROME=$(sed -n '1p' .env)
 	ls $DOWNLOADS | grep chrome
 	if [ $? -ne 0 ]
 	then
@@ -161,13 +162,13 @@ echo $ESPACO
 	TMPDISCORD=$TEMP/$NAMETMP
 	ARQUIVO="discord-0.0.29.deb"
 	touch $TMPDISCORD
-	echo "Iniciando a instalação do Google Chrome"
+	echo "Iniciando a instalação Discord"
 	echo $ESPACO
-	LINK_DISCORD="https://dl.discordapp.net/apps/linux/0.0.29/discord-0.0.29.deb"
+	LINK_DISCORD=$(sed -n '2p' .env)
 	ls $DOWNLOADS | grep discord
 	if [ $? -ne 0 ]
 	then
-		wget -P $DOWNLOADS $LINK_CHROME
+		wget -P $DOWNLOADS $LINK_DISCORD
 		if [ $? -eq 0 ]
 		then
 			echo "Discord baixado com sucesso"
@@ -313,6 +314,7 @@ echo $ESPACO
 			then
 			echo "SDKMAN foi instalado com sucesso"
 			echo "0" >> $TMPSDKMAN
+			echo $ESPACO
 			return 0
 			else
 			echo "Erro ao instalar o SDKMAN (source)"
@@ -352,6 +354,7 @@ echo $ESPACO
 			then
 				echo "O Java foi instalado com sucesso"
 				echo "0" >> $TMPJAVA
+				echo $ESPACO
 				return 0
 			else
 			echo "O java não foi instalado"
@@ -367,6 +370,114 @@ echo $ESPACO
 	echo "1" >> $TMPJAVA
 	return 1
 	fi
+	}
+
+	nvm(){
+	source $HOME/.bashrc
+	NAMETMP="nvm.txt"
+	TMPNVM=$TEMP/$NAMETMP
+	touch $TMPNVM
+	echo $ESPACO
+	echo "Iniciando a instalação do NVM"
+	echo $ESPACO
+	nvm -v
+	if [ $? -ne 0 ]
+	then
+		echo "Baixando e configurando o NVM"
+		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+		if [ $? -eq 0 ]
+		then
+			source $BASHRC
+			echo "0" >> $TMPNVM
+			echo $ESPACO
+			echo "Iniciando a instalação do node"
+			echo $ESPACO
+			nvm -v
+			nvm install v18
+			if [ $? -eq 0 ]
+			then 
+				source $BASHRC
+				node --version
+				if [ $? -eq 0 ]
+				then
+					echo "O node foi instalado com sucesso"
+					echo "0" >> $TMPNVM
+					return 0
+				else
+				echo "Erro ao verificar o node"
+				echo "1" >> $TMPNVM
+				return 1
+				fi
+			else
+			echo "Erro ao instalar o node"
+			echo "1" >> $TMPNVM
+			return 1
+			fi
+		else
+		echo "Erro ao baixar e configurar o NVM"
+		echo "1" >> $TMPNVM
+		return 1
+		fi
+	else
+	echo "O nvm já esta instalado"
+	echo "0" >> $TMPNVM
+	return 0
+	fi
+	}
+
+	code(){
+	## FINALIZAR EM BREVE ##
+	echo "Não use essa função"
+	exit 2
+	NAMETMP="code.txt"
+	TMPCODE=$TEMP/$NAMETMP
+	ARQUIVO="discord-0.0.29.deb"
+	touch $TMPCODE
+	echo "Iniciando a instalação do Visual Studio Code"
+	echo $ESPACO
+	LINK_CODE=$(sed -n '2p' .env)
+	echo "Verificando a instalação"
+	## COMO FAZER?
+	if [ $? -ne 0 ]
+	then
+		wget -P $DOWNLOADS $LINK_CODE
+		if [ $? -eq 0 ]
+		then
+			echo "Discord baixado com sucesso"
+			echo "0" >> $TMPCODE
+		else
+		echo "Erro do baixar o Discord"
+		echo "1" >> $TMPCODE
+		return 1
+		fi
+	else
+	echo "O Discord já foi baixado"
+	echo "Seguindo para instalação"
+	echo "0" >> $TMPCODE
+	fi
+
+	STATS_DISCORD=$(sed -n '1p' $TMPCODE)
+	if [ $STATS_DISCORD -eq 0 ]
+	then
+		dpkg -i $DOWNLOADS/$ARQUIVO
+		if [ $? -eq 0 ]
+		then
+			echo "Discord instalado com sucesso"
+			echo "0" >> $TMPCODE
+			return 0
+		else
+		echo "Erro ao instalar o Discord"
+		echo "1" >> $TMPCODE
+		return 1
+		fi
+	else
+	echo "Erro ao verificar se o Discord esta baixado!!"
+	echo "ERR: DC11"
+	fi
+	}
+
+	eclipse(){
+	
 	}
 }
 

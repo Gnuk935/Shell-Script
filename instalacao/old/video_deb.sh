@@ -1,19 +1,4 @@
 #!bin/bash
-
-echo "Iniciando configuração para game"
-echo "Arquitetura de 32 bits"
-sudo dpkg --add-architecture i386
-echo "Atulizando os repositorios"
-sudo apt update
-echo "Instalando Multiarch"
-sudo apt install firmware-misc-nonfree
-echo "Configurando drivers para nvidia"
-sudo apt install nvidia-detect
-nvidia-detect
-sudo apt install nvidia-driver
-echo "Rode o script novamente para continuar"
-sudo systemctl reboot
-
 echo "Configurando o vulkan"
 # libsdl2-net-2.0-03
 sudo apt install nvidia-driver nvidia-settings libvulkan-dev nvidia-vulkan-icd vulkan-tools vulkan-validationlayers
