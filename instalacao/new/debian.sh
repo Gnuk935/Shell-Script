@@ -267,7 +267,7 @@ echo $ESPACO
 		fi
 	}
 main
-}
+} 
 
 desenvolvedor(){
 echo $ESPACO
@@ -427,37 +427,38 @@ echo $ESPACO
 
 	code(){
 	## FINALIZAR EM BREVE ##
+	# COMO FAZER O WGET BAIXAR O ARQUIVO COM O NOME PERSONALIZADO?
 	echo "Não use essa função"
 	exit 2
 	NAMETMP="code.txt"
 	TMPCODE=$TEMP/$NAMETMP
-	ARQUIVO="discord-0.0.29.deb"
+	ARQUIVO="code.deb"
 	touch $TMPCODE
 	echo "Iniciando a instalação do Visual Studio Code"
 	echo $ESPACO
-	LINK_CODE=$(sed -n '2p' .env)
+	LINK_CODE=$(sed -n '3p' .env)
 	echo "Verificando a instalação"
-	## COMO FAZER?
+	ls ~/Downloads/ | grep $ARQUIVO
 	if [ $? -ne 0 ]
 	then
 		wget -P $DOWNLOADS $LINK_CODE
 		if [ $? -eq 0 ]
 		then
-			echo "Discord baixado com sucesso"
+			echo "Visual Studio Code baixado com sucesso"
 			echo "0" >> $TMPCODE
 		else
-		echo "Erro do baixar o Discord"
+		echo "Erro do baixar o Visual Studio Code"
 		echo "1" >> $TMPCODE
 		return 1
 		fi
 	else
-	echo "O Discord já foi baixado"
+	echo "O Visual Studio Code já foi baixado"
 	echo "Seguindo para instalação"
 	echo "0" >> $TMPCODE
 	fi
 
-	STATS_DISCORD=$(sed -n '1p' $TMPCODE)
-	if [ $STATS_DISCORD -eq 0 ]
+	STATS_CODE=$(sed -n '1p' $TMPCODE)
+	if [ $STATS_CODE -eq 0 ]
 	then
 		dpkg -i $DOWNLOADS/$ARQUIVO
 		if [ $? -eq 0 ]
@@ -466,18 +467,18 @@ echo $ESPACO
 			echo "0" >> $TMPCODE
 			return 0
 		else
-		echo "Erro ao instalar o Discord"
+		echo "Erro ao instalar o Visual Studio Code"
 		echo "1" >> $TMPCODE
 		return 1
 		fi
 	else
-	echo "Erro ao verificar se o Discord esta baixado!!"
+	echo "Erro ao verificar se o Visual Studio Code esta baixado!!"
 	echo "ERR: DC11"
 	fi
 	}
 
 	eclipse(){
-	
+		
 	}
 }
 
