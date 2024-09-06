@@ -1,6 +1,6 @@
 echo "Configurando o vulkan"
-sudo apt-get install libvulkan-dev vulkan-tools vulkan-validationlayers >> log
-sudo apt-get install fizmo-sdl2 libsdl2-2.0-0 libsdl2-dev libsdl2-gfx-1.0-0 libsdl2-gfx-dev libsdl2-image-2.0-0 libsdl2-mixer-2.0-0 libsdl2-net-2.0-0 >> log
+#sudo apt-get install libvulkan-dev vulkan-tools vulkan-validationlayers >> log
+#sudo apt-get install fizmo-sdl2 libsdl2-2.0-0 libsdl2-dev libsdl2-gfx-1.0-0 libsdl2-gfx-dev libsdl2-image-2.0-0 libsdl2-mixer-2.0-0 libsdl2-net-2.0-0 >> log
 
 echo "Iniciando a configuração de games"
 sudo apt-get install steam >> log
